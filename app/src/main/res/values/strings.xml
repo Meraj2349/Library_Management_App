@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Library_Management_App</string>
+    <string name="log_in">log in</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="Register">Register</string>
+    <string name="register_your_account">Register your account</string>
+    <string name="login_page">Login</string>
+</resources>

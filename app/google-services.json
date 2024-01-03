@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "945123239337",
+    "project_id": "library-management-app-ba3ff",
+    "storage_bucket": "library-management-app-ba3ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945123239337:android:d7162e519901d46b4890b8",
+        "android_client_info": {
+          "package_name": "com.meraj.library_management_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCarnZv683heaW8_N3ts4Tq3H5dFXUHrsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
