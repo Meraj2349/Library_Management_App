@@ -32,7 +32,7 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mAuth= FirebaseAuth.getInstance();
 
-        editTextemail=findViewById(R.id.email);
+        editTextemail=findViewById(R.id.entermail);
         editTextpassword=findViewById(R.id.password);
         loginbar=findViewById(R.id.login_btn);
 

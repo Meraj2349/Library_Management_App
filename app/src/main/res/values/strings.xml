@@ -1,11 +1,57 @@
 <resources>
     <string name="app_name">Library_Management_App</string>
     <string name="log_in">log in</string>
-    <string name="email">email</string>
+
     <string name="password">password</string>
     <string name="login">LOGIN</string>
     <string name="sign_in">SIGN IN</string>
     <string name="Register">Register</string>
     <string name="register_your_account">Register your account</string>
     <string name="login_page">Login</string>
+    <string name="email">" Email"</string>
+    <string name="please_login">Please Login</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="font_login">Login</string>
+    <string name="search">Search</string>
+    <string name="book_name">Book Name</string>
+    <string name="title">Title</string>
+    <string name="clean_code">Clean Code</string>
+
+    <string name="do_not_have_an_account">Do not have an account?</string>
+    <string name="don_t_have_any_account">Don\'t have any account?</string>
+    <string name="please_enter_your_details_to_aegister_on_the_app">Please enter your details to Register on the App</string>
+    <string name="please_register_yourself_to_continue_with_the_amazing_experience">Please register yourself to continue with the amazing experience!</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="sign_up1">SIGN UP</string>
+    <string name="enter_your_full_name">enter your full name</string>
+    <string name="enter_your_email_address">enter your email address</string>
+    <string name="date_of_birth_dd_mm_yyyy">Date of Birth (dd/mm/yyyy)*</string>
+    <string name="select_your_dob">select your dob</string>
+    <string name="gender">Gender*</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="mobile">Mobile*</string>
+    <string name="enter_your_mobile_no_without_91">enter your mobile no. (without +880)</string>
+    <string name="password2">Password*</string>
+    <string name="enter_your_password">enter your password</string>
+    <string name="i_agree_with_the_terms_of_service_and_privacy_policy">I agree with the Terms of Service and Privacy Policy</string>
+    <string name="full_name">Full Name*</string>
+    <string name="gender1">gender</string>
+    <string name="enter_your_date_if_barth_dd_mm_yyyy">Enter your date of Birth (dd/mm/yyyy)</string>
+    <string name="date_of_birth">Date of Birth *</string>
+    <string name="confirm_password">Confirm password</string>
+
+    <!--    book element -->
+    <string-array name="Book_Name">
+        <item>Clean Code</item>
+        <item>The Pragmatic Programmer</item>
+        <item>The Mythical Man-Month</item>
+        <item>Design Patterns</item>
+        <item>Refactoring</item>
+        <item>Code Complete</item>
+
+    </string-array>
+
+
+
 </resources>

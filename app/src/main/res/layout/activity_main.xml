@@ -9,18 +9,26 @@
     >
 
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        app:queryHint="Search"
+        android:background="@drawable/searchview_bg"
+        app:iconifiedByDefault="false"
+        android:layout_margin="10dp"
+
         >
 
     </androidx.appcompat.widget.SearchView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rack_book"
+        android:id="@+id/recyclerview_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
         >
+
 
     </androidx.recyclerview.widget.RecyclerView>
 
