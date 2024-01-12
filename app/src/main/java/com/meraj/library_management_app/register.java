@@ -3,6 +3,7 @@ package com.meraj.library_management_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -30,8 +32,10 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class register extends AppCompatActivity {
    private EditText editemail;
@@ -39,12 +43,14 @@ public class register extends AppCompatActivity {
    private EditText editTextpassword;
    private EditText editPhoneNumber;
    private EditText editDateOfBarth;
-   EditText editpasswort;
+   private EditText editpasswort;
    private EditText confirmpassword;
     ProgressBar progressBar;
     RadioButton radioButton;
    private RadioGroup radioGroupRegister;
    private static final String TAG = "register";
+
+   private  DatePickerDialog picker;
 
     Button registerBatton;
 
@@ -65,6 +71,26 @@ public class register extends AppCompatActivity {
         editPhoneNumber   = findViewById(R.id.edittext_number);
         radioGroupRegister= findViewById(R.id.radioGroupGender);
         radioGroupRegister.clearCheck();
+
+        editDateOfBarth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar= Calendar.getInstance();
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+
+                picker = new DatePickerDialog(register.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        editDateOfBarth.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+
+                    }
+                } ,year,month,day);
+                picker.show();
+            }
+        });
 
         Button buttonRegister= findViewById(R.id.register_bre);
 
@@ -87,7 +113,8 @@ public class register extends AppCompatActivity {
                 //valid date mobile number
                 String mobileRegex= "[0][1][0-9]{9}";
                 Matcher mobileNumMatcher;
-                Patterns mobileNumPattern;
+                Pattern mobileNumPattern= Pattern.compile(mobileRegex);
+                mobileNumMatcher= mobileNumPattern.matcher(textMobile);
 
 
 
@@ -128,13 +155,18 @@ public class register extends AppCompatActivity {
                      editPhoneNumber.setError("Mobile No. is required");
                      editPhoneNumber.requestFocus();
                  }
-                 else if(textMobile.length() != 10)
+                 else if(textMobile.length() != 11)
                  {
                      Toast.makeText(register.this, "Please re-enter your mobile no.", Toast.LENGTH_SHORT).show();
                      editPhoneNumber.setError("Mobile No. should be 10 digits");
                      editPhoneNumber.requestFocus();
-                 }
-                 else if(TextUtils.isEmpty(textpwd))
+                 } else if (!mobileNumMatcher.find()) {
+
+                     Toast.makeText(register.this, "Please re-enter your mobile no.", Toast.LENGTH_SHORT).show();
+                     editPhoneNumber.setError("Mobile No. not valid ");
+                     editPhoneNumber.requestFocus();
+
+                 } else if(TextUtils.isEmpty(textpwd))
                  {
                      Toast.makeText(register.this, "Please enter Your password", Toast.LENGTH_SHORT).show();
 
@@ -218,14 +250,19 @@ public class register extends AppCompatActivity {
 
                                     if(task.isSuccessful()) {
 
-                                        user.sendEmailVerification();
+                                      //  user.sendEmailVerification();
 
                                         Toast.makeText(register.this, "user registered successfully,please verify your email", Toast.LENGTH_SHORT).show();
 
 
-//                                    Intent  intent= new Intent(register.this,UserActivity.class);
-//                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_NEW_TASK);
-//
+                                    Intent  intent = new Intent(register.this,UserProfileActivity.class);
+
+
+
+                                        startActivities(new Intent[]{intent});
+
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    finish();
                                     }
                                     else
 

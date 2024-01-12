@@ -40,6 +40,12 @@
     <string name="enter_your_date_if_barth_dd_mm_yyyy">Enter your date of Birth (dd/mm/yyyy)</string>
     <string name="date_of_birth">Date of Birth *</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="emailll">Email</string>
+    <string name="loading">Loading</string>
+    <string name="registered_user_since">Registered User Since :</string>
+    <string name="name">Name</string>
+    <string name="userdisplaypicture">UserDisplayPicture</string>
+    <string name="dob">dob</string>
 
     <!--    book element -->
     <string-array name="Book_Name">
@@ -51,7 +57,6 @@
         <item>Code Complete</item>
 
     </string-array>
-
 
 
 </resources>

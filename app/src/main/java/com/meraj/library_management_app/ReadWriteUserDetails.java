@@ -4,6 +4,9 @@ public class ReadWriteUserDetails {
 
     String Fullname,dob,gender, mobile ;
 
+    public ReadWriteUserDetails() {
+    }
+
     public ReadWriteUserDetails(String   dob, String gender, String mobile) {
 
         this.dob = dob;
