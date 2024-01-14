@@ -1,9 +1,14 @@
 package com.meraj.library_management_app;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -18,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class UserProfileActivity extends AppCompatActivity {
 
     private TextView textViewWelcome,textViewFullname,textViewEmail,textViewDob,textViewGender,textViewmoblile;
@@ -30,6 +37,8 @@ public class UserProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
         setContentView(R.layout.activity_user_profile);
         textViewWelcome=findViewById(R.id.textView_show_welcome);
         textViewFullname=findViewById(R.id.textView_show_full_name);
@@ -38,6 +47,18 @@ public class UserProfileActivity extends AppCompatActivity {
         textViewGender=findViewById(R.id.textView_show_gender);
         textViewmoblile=findViewById(R.id.textView_show_mobile);
         progressBar =findViewById(R.id.progress_bar);
+        //image uplode button
+        imageView =findViewById(R.id.imageView_profile_dp);
+
+        imageView .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+
+                startActivities(new Intent[]{intent});
+            }
+        });
+
 
         authProfile =FirebaseAuth.getInstance();
 
@@ -49,11 +70,42 @@ public class UserProfileActivity extends AppCompatActivity {
         }
         else
         {
+
+            chackIfEmailVverifide(firebaseUser);
             progressBar.setVisibility(View.VISIBLE);
             showUserProfile(firebaseUser);
 
         }
 
+    }
+
+    private void chackIfEmailVverifide(FirebaseUser firebaseUser) {
+        if (!firebaseUser.isEmailVerified())
+        {
+            showAlertDilog();
+        }
+    }
+
+    private void showAlertDilog() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(UserProfileActivity.this);
+        builder.setTitle("email not verified");
+        builder.setMessage("please verify your email now");
+        builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent intent= new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
+
+                startActivities(new Intent[]{intent});
+
+
+            }
+        });
     }
 
     private void showUserProfile(FirebaseUser firebaseUser) {
@@ -89,7 +141,57 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                Toast.makeText(UserProfileActivity.this, "Something went to wrong ", Toast.LENGTH_SHORT).show();
+              progressBar.setVisibility(View.GONE);
             }
         });
+    }
+
+    //Action bar menu
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.common_menu,menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id= item.getItemId();
+        if(id==R.id.menu_refresh)
+        {
+            //refresh activity
+            startActivities(new Intent[]{getIntent()});
+            finish();
+            overridePendingTransition(0,0);
+
+
+        } else if (id == R.id.Update_profile) {
+            Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+            startActivities(new Intent[] {intent});
+        }
+        else if (id == R.id.Update_email) {
+            Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+            startActivities(new Intent[] {intent});
+        }
+        else if (id == R.id.setting) {
+            Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+            startActivities(new Intent[] {intent});
+        }
+        else if (id == R.id.change_password) {
+            Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+            startActivities(new Intent[] {intent});
+        }
+        else if (id == R.id.delete_profile) {
+            Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+            startActivities(new Intent[] {intent});
+        }
+        else if (id == R.id.log_out) {
+            Intent intent= new Intent(UserProfileActivity.this,login.class);
+            startActivities(new Intent[] {intent});
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

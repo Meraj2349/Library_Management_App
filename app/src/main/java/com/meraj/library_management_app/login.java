@@ -43,6 +43,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Login Page");
         mAuth= FirebaseAuth.getInstance();
 
         editTextemail=findViewById(R.id.entermail);
@@ -105,9 +106,15 @@ public class login extends AppCompatActivity {
                             
                             Intent intent= new Intent(login.this,UserProfileActivity.class);
 
+                          //  Intent intent= new Intent(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            startActivity(intent);
                             finish();
-                            startActivities(new Intent[]{intent});
 
 
                         } else {

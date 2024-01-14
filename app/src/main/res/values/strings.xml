@@ -46,6 +46,14 @@
     <string name="name">Name</string>
     <string name="userdisplaypicture">UserDisplayPicture</string>
     <string name="dob">dob</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="refresh">Refresh</string>
+    <string name="update_profile">Update profile</string>
+    <string name="update_email">Update Email</string>
+    <string name="setting">Setting</string>
+    <string name="change_password">Change password</string>
+    <string name="delete_profile">Delete Profile</string>
+    <string name="log_out">Log out</string>
 
     <!--    book element -->
     <string-array name="Book_Name">
