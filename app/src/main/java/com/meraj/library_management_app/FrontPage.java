@@ -16,7 +16,7 @@ public class FrontPage extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_fontpage);
 
-            //Objects.requireNonNull(getSupportActionBar()).setTitle("library management app");
+            Objects.requireNonNull(getSupportActionBar()).setTitle("library management app");
 
             Button buttonlogin = findViewById(R.id.login);
 
@@ -24,7 +24,7 @@ public class FrontPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(FrontPage.this,login.class);
-                    startActivities(new Intent[]{intent});
+                    startActivity(intent);
                 }
             });
 
@@ -34,7 +34,7 @@ public class FrontPage extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(FrontPage.this,register.class);
-                        startActivities(new Intent[]{intent});
+                        startActivity(intent);
                     }
                 });
             }

@@ -59,7 +59,7 @@ public class register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-       Objects.requireNonNull(getSupportActionBar()).setTitle("register");
+       Objects.requireNonNull(getSupportActionBar()).setTitle("Register");
 
        Toast.makeText(register.this, "you can register now", Toast.LENGTH_SHORT).show();
 
@@ -259,7 +259,7 @@ public class register extends AppCompatActivity {
 
 
 
-                                        startActivities(new Intent[]{intent});
+                                        startActivity(intent);
 
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     finish();
