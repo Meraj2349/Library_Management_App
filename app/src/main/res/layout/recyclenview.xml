@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_margin="10dp"
     >
 
@@ -28,160 +29,27 @@
                 android:id="@+id/bookName1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/title" />
+                android:layout_margin="2dp"
+                android:text="@string/title"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
 
             <TextView
+                android:id="@+id/autherName1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/clean_code" />
+                android:layout_marginStart="10dp"
+                android:text="@string/clean_code"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                />
+
+
+
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <ImageView
-            android:id="@+id/bookImage2"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:src="@drawable/a_philosopy_of_software_desine" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/bookName3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/title" />
-
-            <TextView
-                android:id="@+id/bookName33"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/clean_code" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <ImageView
-            android:id="@+id/bookImage3"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:src="@drawable/refactoring" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/bookName2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/title" />
-
-            <TextView
-                android:id="@+id/bookName22"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/clean_code" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <ImageView
-            android:id="@+id/bookImage4"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:src="@drawable/the_mythical_man_month" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/title4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/title" />
-
-            <TextView
-                android:id="@+id/bookName44"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/clean_code" />
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <ImageView
-            android:id="@+id/bookImage"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:src="@drawable/the_pragmatic_progmmer" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/bookName5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/title" />
-
-            <TextView
-                android:id="@+id/bookName55"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/clean_code" />
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
-
 
 </LinearLayout>
+

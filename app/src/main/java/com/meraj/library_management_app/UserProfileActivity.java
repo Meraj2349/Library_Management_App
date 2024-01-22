@@ -1,151 +1,221 @@
 package com.meraj.library_management_app;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.meraj.library_management_app.books.RegModel;
+import com.meraj.library_management_app.databinding.ActivityUserProfileBinding;
 
 import java.util.Objects;
 
 public class UserProfileActivity extends AppCompatActivity {
+    ActivityUserProfileBinding binding;
 
-    private TextView textViewWelcome,textViewFullname,textViewEmail,textViewDob,textViewGender,textViewmoblile;
-    ProgressBar progressBar;
-    private String fullmane,email,dob,gender,mobile;
-    private ImageView imageView;
+    //private String fullmane,email,ResisterNumber;
+    // FirebaseUser firebaseUser;
+   // FirebaseAuth authProfile;
+   //DatabaseReference referenceprofile;
 
-    FirebaseAuth authProfile;
-
+    String userId;
+    FirebaseDatabase databasae;
+    FirebaseAuth mAuth;
+    Button button;
+    RegModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityUserProfileBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
-        setContentView(R.layout.activity_user_profile);
-        textViewWelcome=findViewById(R.id.textView_show_welcome);
-        textViewFullname=findViewById(R.id.textView_show_full_name);
-        textViewEmail=findViewById(R.id.textView_show_email);
-        textViewDob=findViewById(R.id.textView_show_dob);
-        textViewGender=findViewById(R.id.textView_show_gender);
-        textViewmoblile=findViewById(R.id.textView_show_mobile);
-        progressBar =findViewById(R.id.progress_bar);
-        //image uplode button
-        imageView =findViewById(R.id.imageView_profile_dp);
 
-        imageView .setOnClickListener(new View.OnClickListener() {
+        TextView textViewFullName = (TextView) findViewById(R.id.textView_show_full_name);
+        TextView textViewEmailId = (TextView) findViewById(R.id.textView_show_email);
+        TextView textViewRegisterNumber = (TextView) findViewById(R.id.textview_registerNumber);
+        TextView txt_book = (TextView) findViewById(R.id.txt_borrowedbook);
+
+
+
+        button = findViewById(R.id.searchProfilebutton);
+        model =new RegModel();
+
+//       search activity login
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
+                Intent intent = new Intent(UserProfileActivity.this, LibraryActivity.class);
 
-                startActivities(new Intent[]{intent});
+                startActivity(intent);
+
+                finish();
             }
         });
-
-
-        authProfile =FirebaseAuth.getInstance();
-
-        FirebaseUser firebaseUser =authProfile.getCurrentUser();
-
-        if (firebaseUser== null)
-        {
-            Toast.makeText(UserProfileActivity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-
-            chackIfEmailVverifide(firebaseUser);
-            progressBar.setVisibility(View.VISIBLE);
-            showUserProfile(firebaseUser);
-
-        }
-
-    }
-
-    private void chackIfEmailVverifide(FirebaseUser firebaseUser) {
-        if (!firebaseUser.isEmailVerified())
-        {
-            showAlertDilog();
-        }
-    }
-
-    private void showAlertDilog() {
-        AlertDialog.Builder builder= new AlertDialog.Builder(UserProfileActivity.this);
-        builder.setTitle("email not verified");
-        builder.setMessage("please verify your email now");
-        builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+        // up-lode profile activity
+        binding.imageViewProfileDp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, Uplode_profile_Activity.class);
 
-                Intent intent= new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                startActivity(intent);
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-
-
-                startActivities(new Intent[]{intent});
-
-
+                finish();
             }
         });
-    }
 
-    private void showUserProfile(FirebaseUser firebaseUser) {
+        //firebase database
+        databasae =FirebaseDatabase.getInstance();
+        mAuth=FirebaseAuth.getInstance();
 
-        String userId = firebaseUser.getUid();
+        //select the book
 
-        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("register user");
-        referenceprofile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            String receivedData = intent.getStringExtra("book_name");
+
+            txt_book.setText(receivedData);
+
+        }
+
+        //database information read
+
+
+        databasae.getReference().child("User").child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ReadWriteUserDetails readWriteUserDetails = dataSnapshot.getValue(ReadWriteUserDetails.class);
-                if (readWriteUserDetails != null)
-                {
-                    fullmane =firebaseUser.getDisplayName();
-                    email=firebaseUser.getEmail();
-                    dob =readWriteUserDetails.dob;
-                    gender=readWriteUserDetails.gender;
 
 
-                    textViewWelcome.setText("welcome,"+fullmane+"!");
-                    textViewFullname.setText(fullmane);
-                    textViewEmail.setText(email);
-                    textViewDob.setText(dob);
+                if (dataSnapshot.exists()) {
 
-                    textViewGender.setText(gender);
-                    textViewmoblile.setText(mobile);
+                    model=dataSnapshot.getValue(RegModel.class);
+                    binding.textViewShowFullName.setText(model.getFullName().toString());
+                    binding.textviewRegisterNumber.setText(model.getRegester_number().toString());
+                    binding.textViewShowEmail.setText(model.getEmail().toString());
 
-
+                } else {
+                    Toast.makeText(UserProfileActivity.this, "No Data", Toast.LENGTH_SHORT).show();
                 }
-                progressBar.setVisibility(View.GONE);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                Toast.makeText(UserProfileActivity.this, "Something went to wrong ", Toast.LENGTH_SHORT).show();
-              progressBar.setVisibility(View.GONE);
             }
         });
+
+//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+//        referenceprofile = FirebaseDatabase.getInstance().getReference("registerUser");
+
+//        userId = firebaseUser.getUid();
+//
+
+/*
+        if (firebaseUser == null) {
+
+            Toast.makeText(UserProfileActivity.this, "firebase null ", Toast.LENGTH_SHORT).show();
+
+        } else {
+            referenceprofile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+             RegModel regModel = dataSnapshot.getValue(RegModel.class);
+
+                    assert regModel != null;
+                    String fullName = regModel.fullName;
+                    String email = regModel.email;
+                    String regNum = regModel.regester_number;
+
+                    textViewEmailId.setText(email);
+                    textViewFullName.setText(fullName);
+                    textViewRegisterNumber.setText(regNum);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(UserProfileActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+*/
     }
+//
+           //   chackIfEmailVverifide();
+////            progressBar.setVisibility(View.VISIBLE);
+//           showUserProfile(firebaseUser);
+//           // Toast.makeText(UserProfileActivity.this, "Something went wrong ", Toast.LENGTH_SHORT).show();
+
+//    private void chackIfEmailVverifide(FirebaseUser firebaseUser) {
+//        if (!firebaseUser.isEmailVerified())
+//        {
+//            showAlertDilog();
+//        }
+//    }
+
+//    private void showAlertDilog() {
+//        AlertDialog.Builder builder= new AlertDialog.Builder(UserProfileActivity.this);
+//        builder.setTitle("email not verified");
+//        builder.setMessage("please verify your email now");
+//        builder.setPositiveButton("continue", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                Intent intent= new Intent(Intent.ACTION_MAIN);
+//                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+//
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//
+//
+//
+//                startActivity(intent);
+//
+//
+//
+//            }
+//        });
+//    }
+
+//    private void showUserProfile(FirebaseUser firebaseUser) {
+//
+//        referenceprofile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                ReadWriteUserDetails readWriteUserDetails = dataSnapshot.getValue(ReadWriteUserDetails.class);
+//                if (readWriteUserDetails != null) {
+//
+//                    fullmane = firebaseUser.getDisplayName();
+//                    email = firebaseUser.getEmail();
+//                    ResisterNumber = firebaseUser.getPhoneNumber();
+//
+//                    binding.textViewShowFullName.setText(fullmane);
+//                    binding.textViewShowEmail.setText(email);
+//                    binding.textviewRegisterNumber.setText(ResisterNumber);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(UserProfileActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     //Action bar menu
 
@@ -170,27 +240,28 @@ public class UserProfileActivity extends AppCompatActivity {
 
         } else if (id == R.id.Update_profile) {
             Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
-            startActivities(new Intent[] {intent});
+            startActivity(intent);
         }
         else if (id == R.id.Update_email) {
             Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
-            startActivities(new Intent[] {intent});
+            startActivity(intent);
         }
         else if (id == R.id.setting) {
             Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
-            startActivities(new Intent[] {intent});
+            startActivity(intent);
         }
         else if (id == R.id.change_password) {
             Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
-            startActivities(new Intent[] {intent});
+            startActivity(intent);
         }
         else if (id == R.id.delete_profile) {
             Intent intent= new Intent(UserProfileActivity.this,Uplode_profile_Activity.class);
-            startActivities(new Intent[] {intent});
+             startActivity(intent);
         }
         else if (id == R.id.log_out) {
             Intent intent= new Intent(UserProfileActivity.this,login.class);
-            startActivities(new Intent[] {intent});
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

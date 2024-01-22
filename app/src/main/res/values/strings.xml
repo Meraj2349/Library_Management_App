@@ -30,8 +30,8 @@
     <string name="gender">Gender*</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
-    <string name="mobile">Mobile*</string>
-    <string name="enter_your_mobile_no_without_91">enter your mobile no. (without +880)</string>
+    <string name="mobile">Register Number*</string>
+    <string name="enter_your_mobile_no_without_91">enter your Register Number</string>
     <string name="password2">Password*</string>
     <string name="enter_your_password">enter your password</string>
     <string name="i_agree_with_the_terms_of_service_and_privacy_policy">I agree with the Terms of Service and Privacy Policy</string>
@@ -54,6 +54,13 @@
     <string name="change_password">Change password</string>
     <string name="delete_profile">Delete Profile</string>
     <string name="log_out">Log out</string>
+    <string name="search_imag">search_imag</string>
+    <string name="search_books...">Search_book</string>
+    <string name="search_book">Search Books</string>
+    <string name="search_book1">Search Book..</string>
+    <string name="emaillogin">email</string>
+    <string name="book_borrowed">Book Borrowed :</string>
+    <string name="no_book_borrowed">No book borrowed</string>
 
     <!--    book element -->
     <string-array name="Book_Name">

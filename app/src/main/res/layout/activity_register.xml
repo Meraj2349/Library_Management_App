@@ -16,6 +16,7 @@
        android:padding="15dp"
        android:layout_margin="15dp"
        android:background="@color/white"
+       android:backgroundTint="#A16A7198"
        >
        <TextView
            android:layout_width="match_parent"
@@ -25,6 +26,7 @@
            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
            android:gravity="center"
            android:layout_marginTop="30dp"
+           android:textColor="#A1051671"
 
            />
 
@@ -38,6 +40,8 @@
            android:textSize="16sp"
            android:padding="6dp"
            android:layout_marginTop="50dp"
+           android:textStyle="bold"
+
 
 
            />
@@ -63,6 +67,7 @@
            android:textSize="16sp"
            android:padding="6dp"
            android:layout_marginTop="50dp"
+           android:textStyle="bold"
 
 
            />
@@ -77,72 +82,7 @@
            android:inputType="textWebEmailAddress"
            android:padding="10sp"
            android:textSize="16sp" />
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:id="@+id/register_date"
-           android:text="@string/date_of_birth"
-           android:layout_below="@id/register_email"
-           android:textColor="#555555"
-           android:textSize="16sp"
-           android:padding="6dp"
-           android:layout_marginTop="50dp"
 
-
-           />
-
-       <EditText
-
-           android:id="@+id/edittext_id_dob"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/register_date"
-           android:background="@drawable/border"
-           android:hint="@string/enter_your_date_if_barth_dd_mm_yyyy"
-           android:inputType="date"
-           android:padding="10sp"
-           android:textSize="16sp" />
-
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:id="@+id/register_gender"
-           android:text="@string/gender"
-           android:layout_below="@id/register_date"
-           android:textColor="#555555"
-           android:textSize="16sp"
-           android:padding="10dp"
-           android:layout_marginTop="50dp"
-
-
-           />
-       <RadioGroup
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:layout_below="@id/register_gender"
-           android:id="@+id/radioGroupGender"
-           android:background="@drawable/border"
-           >
-           <RadioButton
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:id="@+id/rediofemail"
-               android:text="@string/female"
-               android:textSize="16sp"
-               android:textColor="#555555"
-
-               />
-           <RadioButton
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/male"
-               android:layout_marginStart="10dp"
-               android:textSize="16sp"
-               android:textColor="#555555"
-
-               />
-       </RadioGroup>
 
 
        <TextView
@@ -150,11 +90,13 @@
            android:layout_height="wrap_content"
            android:id="@+id/register_mobile"
            android:text="@string/mobile"
-           android:layout_below="@id/register_gender"
+           android:layout_below="@id/register_email"
            android:textColor="#555555"
            android:textSize="16sp"
            android:padding="10dp"
            android:layout_marginTop="60dp"
+
+           android:textStyle="bold"
 
 
 
@@ -162,7 +104,7 @@
 
        <EditText
 
-           android:id="@+id/edittext_number"
+           android:id="@+id/edittext_reg_number"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_below="@+id/register_mobile"
@@ -184,6 +126,8 @@
            android:textSize="16sp"
            android:padding="10dp"
            android:layout_marginTop="50dp"
+
+           android:textStyle="bold"
 
 
 
@@ -213,7 +157,7 @@
            android:textSize="16sp"
            android:padding="10dp"
            android:layout_marginTop="60dp"
-
+           android:textStyle="bold"
 
 
            />
@@ -225,30 +169,30 @@
            android:layout_height="wrap_content"
            android:layout_below="@+id/register_Confirm_password"
            android:background="@drawable/border"
-           android:hint="@string/enter_your_password"
+           android:hint="@string/confirm_password"
            android:inputType="textPassword"
            android:padding="10sp"
            android:textSize="16sp" />
 
        <Button
            android:id="@+id/register_bre"
-
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-
            android:layout_below="@+id/edittext_confirm_password"
            android:layout_marginTop="40dp"
            android:layout_marginRight="50dp"
            android:layout_marginLeft="50dp"
            android:text="@string/Register"
-           android:background="@drawable/border"
+           android:background="#A15564B3"
+           android:textStyle="bold"
+           android:textSize="18sp"
 
            />
 
        <ProgressBar
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-       android:layout_centerHorizontal="true"
+           android:layout_centerHorizontal="true"
            android:layout_centerVertical="true"
            android:id="@+id/progress_circular"
            android:elevation="10dp"

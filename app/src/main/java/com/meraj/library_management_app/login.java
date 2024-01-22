@@ -75,7 +75,7 @@ public class login extends AppCompatActivity {
                 if(TextUtils.isEmpty(password))
                 {
                     Toast.makeText(login.this,"enter password",Toast.LENGTH_SHORT).show();
-                    editTextemail.setError("valid email is required");
+                    editTextemail.setError("valid password is required");
                     editTextemail.requestFocus();
                 }
                 else
@@ -90,6 +90,9 @@ public class login extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
     private void loginUser(String email, String password) {
