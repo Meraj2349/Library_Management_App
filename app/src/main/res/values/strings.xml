@@ -54,6 +54,7 @@
     <string name="change_password">Change password</string>
     <string name="delete_profile">Delete Profile</string>
     <string name="log_out">Log out</string>
+
     <string name="search_imag">search_imag</string>
     <string name="search_books...">Search_book</string>
     <string name="search_book">Search Books</string>
@@ -61,6 +62,7 @@
     <string name="emaillogin">email</string>
     <string name="book_borrowed">Book Borrowed :</string>
     <string name="no_book_borrowed">No book borrowed</string>
+
 
     <!--    book element -->
     <string-array name="Book_Name">
